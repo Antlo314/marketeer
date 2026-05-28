@@ -1,0 +1,8 @@
+{
+  "name": "Marketeer",
+  "description": "A simple photo manager and listing suite for resellers with beautiful background removal and editing capabilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
