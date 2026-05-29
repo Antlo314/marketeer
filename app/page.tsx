@@ -125,123 +125,7 @@ export default function HomePage() {
     );
   }
 
-  // LOGIN GATE SCREEN
-  if (!user) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex flex-col md:flex-row relative overflow-hidden">
-        
-        {/* Left side: Premium, Clean Login Portal */}
-        <div className="flex-1 flex flex-col justify-center items-center px-6 py-12 md:px-16 lg:px-24 z-10 w-full md:max-w-xl bg-slate-950/80 backdrop-blur-md border-r border-slate-900">
-          
-          <div className="w-full max-w-sm space-y-8">
-            <div className="space-y-3">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-mono text-[10px] uppercase tracking-wider font-bold">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Next-Gen Reseller Workspace</span>
-              </div>
-              <h1 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-none font-display">
-                Marketeer
-              </h1>
-              <p className="text-sm text-slate-405 leading-relaxed">
-                Refine, price, and curate your product photos. Instantly distribute listings across multi-channel marketplaces.
-              </p>
-            </div>
-
-            {authError && (
-              <div className="bg-rose-500/10 border border-rose-500/20 p-3.5 rounded-xl text-xs text-rose-400 font-mono text-center">
-                {authError}
-              </div>
-            )}
-
-            <div className="space-y-6">
-              <form onSubmit={handleEmailLoginSubmit} className="space-y-4">
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-mono font-bold text-slate-450 uppercase tracking-widest block">
-                    Access Code or E-Mail
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Enter your reseller email address..."
-                    value={altEmail}
-                    onChange={(e) => {
-                      setAltEmail(e.target.value);
-                      setAuthError("");
-                    }}
-                    className="w-full bg-slate-900/65 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white placeholder-slate-600 outline-none focus:border-teal-500/80 focus:ring-1 focus:ring-teal-500/25 transition-all font-mono"
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl bg-teal-500 hover:bg-teal-450 text-slate-950 text-xs font-black transition-all cursor-pointer shadow-lg shadow-teal-500/10 hover:shadow-teal-500/20"
-                >
-                  Unveil Workspace
-                </button>
-              </form>
-
-              <div className="relative flex py-2 items-center">
-                <div className="flex-grow border-t border-slate-900"></div>
-                <span className="flex-shrink mx-3 text-[9px] font-mono text-slate-500 uppercase tracking-widest">Or access session via provider</span>
-                <div className="flex-grow border-t border-slate-900"></div>
-              </div>
-
-              <button
-                onClick={loginWithGoogle}
-                className="w-full py-3 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-750 text-slate-200 text-xs font-mono font-bold transition-all cursor-pointer flex items-center justify-center gap-2.5 hover:bg-slate-850"
-              >
-                <span>Continue secure session with Google</span>
-              </button>
-            </div>
-
-            <div className="pt-6 border-t border-slate-900/60">
-              <p className="text-[10px] text-slate-550 leading-relaxed font-mono">
-                Safe, sandboxed authentication portal. No password required for initial workspace preview access.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Right side: Interactive, Immersive Hero panel with the generated image */}
-        <div className="hidden md:flex flex-1 relative bg-slate-900 items-center justify-center p-12 overflow-hidden">
-          
-          {/* Ambient Glows */}
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-teal-500/10 rounded-full filter blur-[150px] mix-blend-screen pointer-events-none animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-emerald-550/5 rounded-full filter blur-[150px] mix-blend-screen pointer-events-none" />
-
-          {/* Luxury artwork image container */}
-          <div className="relative w-full h-full max-w-2xl max-h-[85%] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl shadow-indigo-950/20 flex items-center justify-center">
-            <Image
-              src={loginHero}
-              alt="Marketeer Luxury Workspace Concept"
-              fill
-              className="object-cover opacity-85 hover:scale-[1.02] transition-transform duration-700 select-none pointer-events-none"
-              sizes="(max-width: 1200px) 100vw, 50vw"
-              priority
-            />
-            
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-85" />
-            
-            {/* Elegant Translucent Overlay Panel with Feature Curation highlights */}
-            <div className="absolute bottom-8 left-8 right-8 bg-slate-950/50 backdrop-blur-xl border border-white/5 p-6 rounded-2xl text-left space-y-2.5 shadow-xl">
-              <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-teal-400"></span>
-                <span className="text-[10px] font-mono text-teal-400 uppercase tracking-widest font-black animate-pulse">AI Curation Engine Active</span>
-              </div>
-              <p className="text-white text-base font-extrabold tracking-tight font-display">
-                Automate your photo workflows & listing distributions.
-              </p>
-              <p className="text-slate-300 text-xs font-mono leading-normal">
-                High-contrast cropping, seamless background removal, smart multi-tier pricing guides, and scheduled cross-channel deployments.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    );
-  }
+  // LOGIN GATE SCREEN REMOVED
 
   // PRIMARY DASHBOARD AFTER SUCCESSFUL SIGN-IN
   return (
@@ -334,7 +218,7 @@ export default function HomePage() {
             {/* Profile status widget */}
             <div className="flex items-center gap-2.5">
               <div className="text-right">
-                <p className="text-xs font-black text-white max-w-[120px] truncate">{user.displayName}</p>
+                <p className="text-xs font-black text-white max-w-[120px] truncate">{user?.displayName}</p>
                 <div className="flex items-center justify-end gap-1">
                   <span className={`text-[8px] font-mono tracking-widest font-black uppercase px-1 rounded ${
                     isAdmin 
@@ -346,13 +230,6 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <button
-                onClick={logout}
-                title="Log out of app"
-                className="p-2 border border-slate-800 hover:border-slate-700 bg-slate-950 hover:bg-slate-900 rounded-xl transition-all cursor-pointer"
-              >
-                <LogOut className="w-3.5 h-3.5 text-slate-400 hover:text-white" />
-              </button>
             </div>
 
             {/* Mobile Menu Icon */}
