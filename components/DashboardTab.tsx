@@ -50,7 +50,9 @@ export default function DashboardTab({
       reader.onload = async (e) => {
         const base64Img = e.target?.result as string;
         if (!base64Img) {
-          throw new Error("Unable to read image data.");
+          setAiError("Unable to read image data.");
+          setIsAiLoading(false);
+          return;
         }
 
         try {
@@ -145,12 +147,17 @@ export default function DashboardTab({
 
           await onSaveListing(fallbackListing);
           onSelectItem(fallbackListing, "edit");
+        } finally {
+          setIsAiLoading(false);
         }
+      };
+      reader.onerror = () => {
+        setAiError("Failed to read image file.");
+        setIsAiLoading(false);
       };
       reader.readAsDataURL(file);
     } catch (err: any) {
       setAiError(`Upload process failed: ${err.message || err}`);
-    } finally {
       setIsAiLoading(false);
     }
   };
@@ -253,6 +260,7 @@ export default function DashboardTab({
                   processImageFile(e.target.files[0]);
                 }
               }}
+              onClick={(e) => e.stopPropagation()}
               className="hidden" 
             />
 

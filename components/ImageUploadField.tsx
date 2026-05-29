@@ -123,6 +123,7 @@ export default function ImageUploadField({ value, onChange, label, id = "image-u
           accept="image/*"
           className="hidden"
           onChange={handleChange}
+          onClick={(e) => e.stopPropagation()}
         />
 
         {value && !isPlaceholderUrl(value) ? (

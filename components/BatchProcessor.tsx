@@ -331,6 +331,7 @@ export default function BatchProcessor({ onAddBatch, statusLimit, statusUsed }: 
             accept="image/*"
             className="hidden"
             onChange={handleFileInputChange}
+            onClick={(e) => e.stopPropagation()}
           />
 
           <UploadCloud className={`w-8 h-8 mx-auto transition-colors ${dragActive ? "text-teal-400" : "text-slate-550"}`} />
