@@ -164,15 +164,18 @@ export default function DashboardTab({
 
   const categories = ["All", "Bags & Accessories", "Electronics", "Clothing", "Home & Garden", "Other"];
 
-  const filteredItems = items.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(search.toLowerCase()) || 
-                          item.description.toLowerCase().includes(search.toLowerCase());
+  const filteredItems = (items || []).filter(item => {
+    if (!item) return false;
+    const title = item.title || "";
+    const description = item.description || "";
+    const matchesSearch = title.toLowerCase().includes(search.toLowerCase()) || 
+                          description.toLowerCase().includes(search.toLowerCase());
     const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
-  const activeCount = items.filter(i => i.status === "Active").length;
-  const draftCount = items.filter(i => i.status === "Draft").length;
+  const activeCount = (items || []).filter(i => i && i.status === "Active").length;
+  const draftCount = (items || []).filter(i => i && i.status === "Draft").length;
 
   return (
     <div className="space-y-6">

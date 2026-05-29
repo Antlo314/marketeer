@@ -118,7 +118,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setSubStatus({
             tier: "Enterprise",
             isActive: true,
-            listingsUsed: listings.filter(i => i.status !== "Draft").length,
+            listingsUsed: (listings || []).filter(i => i && i.status !== "Draft").length,
             listingsMax: 999999, // Infinite usage
           });
         }, 0);
@@ -280,8 +280,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (savedListings) {
         try {
           const parsed = JSON.parse(savedListings);
+          const cleanListings = Array.isArray(parsed) ? parsed.filter(item => item && typeof item === "object" && item.id) : PRESET_LISTINGS;
           const timer = setTimeout(() => {
-            setListings(parsed);
+            setListings(cleanListings);
           }, 0);
           return () => clearTimeout(timer);
         } catch (e) {
@@ -318,8 +319,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const savedListings = localStorage.getItem(`markeer_listings_${user.uid}`);
         if (savedListings) {
           try {
-            setListings(JSON.parse(savedListings));
-          } catch (e) {}
+            const parsed = JSON.parse(savedListings);
+            const cleanListings = Array.isArray(parsed) ? parsed.filter(item => item && typeof item === "object" && item.id) : PRESET_LISTINGS;
+            setListings(cleanListings);
+          } catch (e) {
+            setListings(PRESET_LISTINGS);
+          }
         } else {
           setListings(PRESET_LISTINGS);
         }
@@ -329,8 +334,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const savedListings = localStorage.getItem(`markeer_listings_${user.uid}`);
       if (savedListings) {
         try {
-          setListings(JSON.parse(savedListings));
-        } catch (e) {}
+          const parsed = JSON.parse(savedListings);
+          const cleanListings = Array.isArray(parsed) ? parsed.filter(item => item && typeof item === "object" && item.id) : PRESET_LISTINGS;
+          setListings(cleanListings);
+        } catch (e) {
+          setListings(PRESET_LISTINGS);
+        }
       } else {
         setListings(PRESET_LISTINGS);
       }
